@@ -17,9 +17,22 @@ function writePassword() {
   alert("Welcome to the random password generator. Please select the following password criteria to start: ") // \n\n1).Your password must be at least 8 characters and at most 128 characters in length. \nor 2). Your password must include at least one uppercase letter and one special character \nor both 1) and 2)"
   var generatePassword = function () {
     var lengthofPassword = prompt("Please specify the length of your password.\n(enter a number between 8 and 128)", "8");
-    if (isNumber(lengthofPassword) === false) {
-      alert("please enter a numeric number for the length of password."); generatePassword()
-    } else if (lengthofPassword.length > 128 && lengthofPassword.length < 8 === true) {
+    console.log(lengthofPassword); // always a string
+    var numlengthofPassword = Number(lengthofPassword); // if lengthofPassword !== number, return NaN
+    // add code to roundup input here
+    numlengthofPassword = Math.floor(numlengthofPassword)
+    console.log(numlengthofPassword); // if lengthofPassword !== number, return NaN 
+    console.log(typeof (numlengthofPassword)); // return number
+    console.log(numlengthofPassword >= 8);  //return false if value input <=7
+    console.log(numlengthofPassword <=128); //return false if value input >=129
+    //check if === NaN, and null   & add some edge case
+    
+    if ((numlengthofPassword === NaN) === true) {
+      alert("please enter a numeric number for the length of password."); generatePassword();
+    } else if (numlengthofPassword === null) {
+      alert("Canceled password length input. \n Please click the Generate 'Password button' to start again."); return;
+    }
+    else if ((numlengthofPassword >= 8 && numlengthofPassword <= 128) === false) {
       alert("Your password must be at least 8 characters and at most 128 characters in length.\nPlease specify the length of yourpassword again"); generatePassword()
     } else {
       var uppercaseorNot = confirm("DO you want uppercase letters?")
@@ -27,9 +40,9 @@ function writePassword() {
       var numericorNot = confirm("Do you want numeric numbers?")
       var specialcharacterorNot = confirm("Do you want special characters?")
 
-      var i = Math.floor(Math.random() * lengthofPassword)
+      var i = Math.floor(Math.random() * numlengthofPassword)
 
-      for (var i2 = 0; i2 < lengthofPassword.length; i2 = i2 + 1)
+      for (var i2 = 0; i2 < numlengthofPassword.length; i2 = i2 + 1)
         if (uppercaseorNot && lowercaseorNot && numericorNot && specialcharacterorNot === false) {
           alert("Please choose at least one criteria!"); generatePassword();
         } else if (
