@@ -51,23 +51,28 @@ function writePassword() {
     var lowercaseorNot = confirm("Do you want lowercase letters?")
     var numericorNot = confirm("Do you want numeric numbers?")
     var specialcharacterorNot = confirm("Do you want special characters?")
-    var passwordArray = [];
-    var passwordstring =[];
-    var desiredArray=[];
+    var passwordstring = [];
+    var desiredArray = [];
 
-   
-    // var index = Math.floor(Math.random() * array.length);
-    for (var i2 = 0; i2 < numlengthofPassword; i2++) {
-      if ((uppercaseorNot && lowercaseorNot && numericorNot && specialcharacterorNot) === false) {
+    if (uppercaseorNot === true) { desiredArray = desiredArray.concat(uppercaseAlphabeticArray); }
+    if (lowercaseorNot === true) { desiredArray = desiredArray.concat(lowercaseorNot); }
+    if (numericorNot === true) { desiredArray = desiredArray.concat(numericalArray); }
+    if (specialcharacterorNot === true) { desiredArray = desiredArray.concat(specialCharacterArray); }
+
+    console.log(desiredArray)
+
+    // var index = Math.floor(Math.random() * desiredArray);
+    
+      if ((uppercaseorNot || lowercaseorNot || numericorNot || specialcharacterorNot) === false) {
         alert("Please choose at least one criteria!"); generatePassword();
-      } else if ((uppercaseorNot && lowercaseorNot && numericorNot && specialcharacterorNot) === true) {
-        index = Math.floor(Math.random() *allArray.length)
-        passwordArray = allArray[index];
-        passwordstring[i2] = passwordArray[i2]
-        console.log(passwordstring)
+      } else { for (var i2 = 0; i2 < numlengthofPassword; i2++) {
+        var index = Math.floor(Math.random() * desiredArray.length);
+        passwordstring[i2] = desiredArray[index];
+        //console.log(passwordstring);
       }
+      } return passwordstring.join('')
     }
-  };
+  
 
 
 
@@ -77,6 +82,6 @@ function writePassword() {
 
   passwordText.value = password;
 
-};
+  };
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
