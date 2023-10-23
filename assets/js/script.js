@@ -55,7 +55,7 @@ function writePassword() {
     var desiredArray = [];
 
     if (uppercaseorNot === true) { desiredArray = desiredArray.concat(uppercaseAlphabeticArray); }
-    if (lowercaseorNot === true) { desiredArray = desiredArray.concat(lowercaseorNot); }
+    if (lowercaseorNot === true) { desiredArray = desiredArray.concat(alphabeticArray); }
     if (numericorNot === true) { desiredArray = desiredArray.concat(numericalArray); }
     if (specialcharacterorNot === true) { desiredArray = desiredArray.concat(specialCharacterArray); }
 
