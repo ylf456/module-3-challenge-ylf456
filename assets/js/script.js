@@ -39,18 +39,18 @@ function writePassword() {
     //check if === NaN, and null   & add some edge case
 
     if (isNaN(numlengthofPassword) === true) {
-      alert("please enter a numeric number for the length of password."); generatePassword();
+      alert("please enter a numeric number for the length of password.");return generatePassword();
     } else if (lengthofPassword === null) {
       alert("Canceled password length input. \n Please click the Generate 'Password button' to start again."); return;
     }
     else if ((numlengthofPassword >= 8 && numlengthofPassword <= 128) === false) {
-      alert("Your password must be at least 8 characters and at most 128 characters in length.\nPlease specify the length of yourpassword again"); generatePassword();
-    }
-
-    var uppercaseorNot = confirm("DO you want uppercase letters?")
-    var lowercaseorNot = confirm("Do you want lowercase letters?")
-    var numericorNot = confirm("Do you want numeric numbers?")
-    var specialcharacterorNot = confirm("Do you want special characters?")
+      alert("Your password must be at least 8 characters and at most 128 characters in length.\nPlease specify the length of yourpassword again"); return generatePassword();
+    } 
+    var uppercaseorNot = confirm("DO you want uppercase letters?");
+    var lowercaseorNot = confirm("Do you want lowercase letters?");
+    var numericorNot = confirm("Do you want numeric numbers?");
+    var specialcharacterorNot = confirm("Do you want special characters?");
+    
     var passwordstring = [];
     var desiredArray = [];
 
@@ -64,14 +64,15 @@ function writePassword() {
     // var index = Math.floor(Math.random() * desiredArray);
     
       if ((uppercaseorNot || lowercaseorNot || numericorNot || specialcharacterorNot) === false) {
-        alert("Please choose at least one criteria!"); generatePassword();
+        alert("Please choose at least one criteria!"); return generatePassword();
       } else { for (var i2 = 0; i2 < numlengthofPassword; i2++) {
         var index = Math.floor(Math.random() * desiredArray.length);
         passwordstring[i2] = desiredArray[index];
         console.log(passwordstring);
-      }
+     
       } return passwordstring.join('');
     }
+  }
   
 
 
